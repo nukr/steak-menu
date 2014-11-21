@@ -1,0 +1,66 @@
+{
+  "name": "loopback-ias",
+  "version": "0.0.1",
+  "main": "server/server.js",
+  "description": "IAS for brandma",
+  "repository": "git@gitlab.brandma.co:wayne/brandma-ias.git",
+  "scripts": {
+    "pretest": "jshint ."
+  },
+  "dependencies": {
+    "async": "^0.9.0",
+    "bootstrap": "^3.3.1",
+    "compression": "^1.0.3",
+    "errorhandler": "^1.1.1",
+    "flux": "^2.0.1",
+    "jquery": "^2.1.1",
+    "localforage": "^1.1.1",
+    "lodash": "^2.4.1",
+    "loopback": "^2.7.0",
+    "loopback-boot": "^2.3.1",
+    "loopback-connector-mongodb": "^1.4.4",
+    "loopback-datasource-juggler": "^2.11.0",
+    "material-ui": "^0.1.28",
+    "moment": "^2.8.3",
+    "pretty-hrtime": "^0.2.2",
+    "react": "^0.12.0",
+    "react-bootstrap": "^0.12.0",
+    "serve-favicon": "^2.0.1"
+  },
+  "optionalDependencies": {
+    "loopback-explorer": "^1.1.0"
+  },
+  "devDependencies": {
+    "browser-sync": "^1.6.0",
+    "browserify": "^6.2.0",
+    "browserify-shim": "^3.8.0",
+    "browserify-zepto": "^1.1.4",
+    "coffeeify": "^0.7.0",
+    "gulp": "^3.8.10",
+    "gulp-if": "^1.2.5",
+    "gulp-livereload": "^2.1.1",
+    "gulp-nodemon": "^1.0.4",
+    "gulp-notify": "^2.0.0",
+    "gulp-rename": "^1.2.0",
+    "gulp-streamify": "0.0.5",
+    "gulp-uglify": "^1.0.1",
+    "gulp-util": "^3.0.1",
+    "jshint": "^2.5.6",
+    "reactify": "^0.14.0",
+    "require-dir": "^0.1.0",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "^1.0.0",
+    "watchify": "^2.1.0"
+  },
+  "browser": {},
+  "browserify": {
+    "transform": [
+      "reactify",
+      "coffeeify",
+      "browserify-shim"
+    ]
+  },
+  "browserify-shim": {
+    "hljs": "hljs"
+  }
+}

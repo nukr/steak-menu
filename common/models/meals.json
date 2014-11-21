@@ -1,0 +1,24 @@
+{
+  "name": "meals",
+  "base": "PersistedModel",
+  "properties": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "category": {
+      "type": "string"
+    },
+    "price": {
+      "type": "number",
+      "required": true
+    },
+    "remark": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": []
+}

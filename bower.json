@@ -1,0 +1,23 @@
+{
+  "name": "loopback-ias",
+  "version": "0.0.1",
+  "homepage": "https://github.com/nukr/loopback-ias",
+  "authors": [
+    "Nukr <nukrs.w@gmail.com>"
+  ],
+  "description": "IAS",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "client/bower_components/",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap-material-design": "~0.1.5",
+    "bootstrap": "~3.2.0",
+    "react": "~0.12.0"
+  }
+}

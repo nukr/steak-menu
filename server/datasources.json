@@ -1,0 +1,13 @@
+{
+  "db": {
+    "name": "db",
+    "connector": "memory"
+  },
+  "aws-steak-mongodb": {
+    "host": "54.65.19.174",
+    "port": 27017,
+    "database": "taipei_steak",
+    "name": "aws-steak-mongodb",
+    "connector": "mongodb"
+  }
+}
