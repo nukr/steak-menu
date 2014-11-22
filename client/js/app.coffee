@@ -1,8 +1,9 @@
 React = require('react')
 MealStore = require('./stores/MealStore.coffee')
 Main  = require('./components/Main.coffee')
+utils = require('./utils/MealWebAPIUtils.coffee')
 
-MealStore.init()
+utils.getAll()
 
 $(document).ready ->
     React.render Main(), document.getElementById('main')

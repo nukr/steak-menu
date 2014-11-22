@@ -1,5 +1,6 @@
 React = require('react')
 MealStore = require('../stores/MealStore.coffee')
+utils = require('../utils/MealWebAPIUtils.coffee')
 actions = require('../actions/AppActionCreator.coffee')
 {button, label, fieldset, legend, input, h1, form, div} = React.DOM
 
@@ -14,7 +15,7 @@ ControlGroupInput = React.createFactory React.createClass
                     name: @props.name
                     placeholder: @props.label
 
-EditMeal = React.createFactory React.createClass
+CreateMeal = React.createFactory React.createClass
     getInitialState: ->
         meal: MealStore.getEditMeal()
 
@@ -46,8 +47,7 @@ EditMeal = React.createFactory React.createClass
     submit: (e) ->
         e.preventDefault()
         formData = $('.form-create-meal').serialize()
-        actions.createMeal(formData)
+        utils.create(formData)
 
 
-module.exports = EditMeal
-
+module.exports = CreateMeal

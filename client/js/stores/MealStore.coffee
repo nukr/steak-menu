@@ -8,6 +8,17 @@ async = require('async')
 view = 'Main'
 editMeal = []
 url = 'http://0.0.0.0:3000'
+_allMeals = []
+
+update = (data) ->
+    _allMeals[index] = data for meal, index in _allMeals when meal.id is data.id
+
+destroy = (data) ->
+    _.remove _allMeals, (meal) ->
+        meal.id is data.id
+
+create = (data) ->
+    _allMeals.push(data)
 
 MealStore = _.extend EventEmitter.prototype,
 
@@ -15,6 +26,9 @@ MealStore = _.extend EventEmitter.prototype,
 
     getView: ->
         view
+
+    getAllMeals: ->
+        _allMeals
 
     getEditMeal: ->
         editMeal
@@ -35,31 +49,26 @@ AppDispatcher.register (payload) ->
             view = 'EditMeal'
             editMeal = action.item
 
-        when AppConstants.EDIT_MEAL
+        when AppConstants.UPDATE_MEAL
             view = 'Main'
-            $.ajax
-                url: url + '/api/meals'
-                type: 'PUT'
-                data: action.item
-                success: ->
-                    view = "Main"
-                    MealStore.emitChange()
+            update action.item
 
         when AppConstants.SHOW_CREATE_MEAL
             view = 'CreateMeal'
 
         when AppConstants.CREATE_MEAL
-            $.post url + '/api/meals', action.item, (data) ->
-                view = 'Main'
-                MealStore.emitChange()
+            view = 'Main'
+            create(action.item)
 
         when AppConstants.DELETE_MEAL
-            $.ajax
-                url: url + '/api/meals/' + action.item.id
-                type: 'DELETE'
-                success: ->
-                    view = "Main"
-                    MealStore.emitChange()
+            destroy(action.item)
+            view = "Main"
+
+        when AppConstants.RECEIVE_ALL
+            _allMeals = action.item
+
+        when AppConstants.ERROR
+            view = 'Error'
 
     MealStore.emitChange()
 

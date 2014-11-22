@@ -3,7 +3,7 @@ EditMeal = require('./EditMenu.coffee')
 CreateMeal = require('./CreateMeal.coffee')
 MealStore = require('../stores/MealStore.coffee')
 actions = require('../actions/AppActionCreator.coffee')
-url = 'http://0.0.0.0:3000'
+utils = require('../utils/MealWebAPIUtils.coffee')
 
 {div, button, h1, table, tr, th, td, thead, tbody} = React.DOM
 
@@ -30,17 +30,12 @@ MealTr = React.createFactory React.createClass
         actions.showEditMeal(@props.meal)
 
     delete: ->
-        actions.deleteMeal(@props.meal)
+        utils.delete(@props.meal)
 
 MealTable = React.createFactory React.createClass
-    getInitialState: ->
-        meals: []
-
     componentWillMount: ->
-        @getMeals()
-
     renderMeal: ->
-        MealTr meal: meal for meal in @state.meals
+        MealTr meal: meal for meal in @props.meals
 
     render: ->
         table className: 'table lead',
@@ -61,13 +56,6 @@ MealTable = React.createFactory React.createClass
             tbody
                 @renderMeal()
 
-    getMeals: ->
-        $.get url + '/api/meals', ((meals) ->
-            console.log meals
-            @setState
-                meals: meals
-        ).bind(@)
-
     showCreateMeal: ->
         actions.showCreateMeal()
 
@@ -83,7 +71,7 @@ Main = React.createFactory React.createClass
         div className: 'main row',
             switch @state.view
                 when 'Main'
-                    MealTable()
+                    MealTable meals: MealStore.getAllMeals()
 
                 when 'EditMeal'
                     EditMeal()
