@@ -7,5 +7,7 @@ module.exports = keyMirror({
     SHOW_CREATE_MEAL: null,
     CHANGE_EVENT: null,
     CREATE_MEAL: null,
-    DELETE_MEAL: null
+    DELETE_MEAL: null,
+    SOURCE_VIEW_ACTION: null,
+    SOURCE_SERVER_ACTION: null
 });

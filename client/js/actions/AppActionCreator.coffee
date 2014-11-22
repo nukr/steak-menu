@@ -27,6 +27,11 @@ AppActionCreators =
         AppDispatcher.handleServerAction
             actionType: AppConstants.DELETE_MEAL,
             item: item
+
+    receiveAll: (item) ->
+        AppDispatcher.handleServerAction
+            actionType: AppConstants.RECEIVE_ALL
+            item: item
 ###############################################################################
 
 module.exports = AppActionCreators

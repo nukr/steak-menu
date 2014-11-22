@@ -8,6 +8,7 @@ async = require('async')
 view = 'Main'
 editMeal = []
 url = 'http://0.0.0.0:3000'
+_allMeals = []
 
 MealStore = _.extend EventEmitter.prototype,
 
@@ -15,6 +16,9 @@ MealStore = _.extend EventEmitter.prototype,
 
     getView: ->
         view
+
+    getAllMeals: ->
+        _allMeals
 
     getEditMeal: ->
         editMeal
@@ -60,6 +64,9 @@ AppDispatcher.register (payload) ->
                 success: ->
                     view = "Main"
                     MealStore.emitChange()
+
+        when AppConstants.RECEIVE_ALL
+            _allMeals = action.item
 
     MealStore.emitChange()
 
