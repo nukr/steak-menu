@@ -10,6 +10,9 @@ editMeal = []
 url = 'http://0.0.0.0:3000'
 _allMeals = []
 
+update = (data) ->
+    _allMeals[index] = data for meal, index in _allMeals when meal.id is data.id
+
 MealStore = _.extend EventEmitter.prototype,
 
     init: ->
@@ -39,15 +42,9 @@ AppDispatcher.register (payload) ->
             view = 'EditMeal'
             editMeal = action.item
 
-        when AppConstants.EDIT_MEAL
+        when AppConstants.UPDATE_MEAL
             view = 'Main'
-            $.ajax
-                url: url + '/api/meals'
-                type: 'PUT'
-                data: action.item
-                success: ->
-                    view = "Main"
-                    MealStore.emitChange()
+            update action.item
 
         when AppConstants.SHOW_CREATE_MEAL
             view = 'CreateMeal'
@@ -67,6 +64,9 @@ AppDispatcher.register (payload) ->
 
         when AppConstants.RECEIVE_ALL
             _allMeals = action.item
+
+        when AppConstants.ERROR
+            view = 'Error'
 
     MealStore.emitChange()
 

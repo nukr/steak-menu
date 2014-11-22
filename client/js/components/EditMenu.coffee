@@ -1,7 +1,7 @@
 React = require('react')
 MealStore = require('../stores/MealStore.coffee')
+utils = require('../utils/MealWebAPIUtils.coffee')
 actions = require('../actions/AppActionCreator.coffee')
-url = 'http://0.0.0.0:3000'
 {button, label, fieldset, legend, input, h1, form, div} = React.DOM
 
 ControlGroupInput = React.createFactory React.createClass
@@ -56,7 +56,7 @@ EditMeal = React.createFactory React.createClass
     submit: (e) ->
         e.preventDefault()
         formData = $('.form-edit-meal').serialize()
-        actions.editMeal(formData)
+        utils.update(formData)
 
 
 module.exports = EditMeal
