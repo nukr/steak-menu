@@ -13,6 +13,10 @@ _allMeals = []
 update = (data) ->
     _allMeals[index] = data for meal, index in _allMeals when meal.id is data.id
 
+destroy = (data) ->
+    _.remove _allMeals, (meal) ->
+        meal.id is data.id
+
 MealStore = _.extend EventEmitter.prototype,
 
     init: ->
@@ -55,12 +59,8 @@ AppDispatcher.register (payload) ->
                 MealStore.emitChange()
 
         when AppConstants.DELETE_MEAL
-            $.ajax
-                url: url + '/api/meals/' + action.item.id
-                type: 'DELETE'
-                success: ->
-                    view = "Main"
-                    MealStore.emitChange()
+            destroy(action.item)
+            view = "Main"
 
         when AppConstants.RECEIVE_ALL
             _allMeals = action.item

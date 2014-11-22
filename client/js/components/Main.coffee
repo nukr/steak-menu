@@ -3,6 +3,7 @@ EditMeal = require('./EditMenu.coffee')
 CreateMeal = require('./CreateMeal.coffee')
 MealStore = require('../stores/MealStore.coffee')
 actions = require('../actions/AppActionCreator.coffee')
+utils = require('../utils/MealWebAPIUtils.coffee')
 
 {div, button, h1, table, tr, th, td, thead, tbody} = React.DOM
 
@@ -29,7 +30,7 @@ MealTr = React.createFactory React.createClass
         actions.showEditMeal(@props.meal)
 
     delete: ->
-        actions.deleteMeal(@props.meal)
+        utils.delete(@props.meal)
 
 MealTable = React.createFactory React.createClass
     componentWillMount: ->

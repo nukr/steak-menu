@@ -9,10 +9,20 @@ module.exports =
 
     update: (formData) ->
         $.ajax
-            url: "#{url}/"
+            url: url
             method: 'PUT'
             data: formData
             success: (data) ->
                 actions.updateMeal(data)
+            error: (error) ->
+                actions.error(error)
+
+    delete: (meal) ->
+        console.log meal
+        $.ajax
+            url: "#{url}/#{meal.id}"
+            method: 'DELETE'
+            success: (data) ->
+                actions.deleteMeal(meal)
             error: (error) ->
                 actions.error(error)
