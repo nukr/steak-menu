@@ -17,6 +17,9 @@ destroy = (data) ->
     _.remove _allMeals, (meal) ->
         meal.id is data.id
 
+create = (data) ->
+    _allMeals.push(data)
+
 MealStore = _.extend EventEmitter.prototype,
 
     init: ->
@@ -54,9 +57,8 @@ AppDispatcher.register (payload) ->
             view = 'CreateMeal'
 
         when AppConstants.CREATE_MEAL
-            $.post url + '/api/meals', action.item, (data) ->
-                view = 'Main'
-                MealStore.emitChange()
+            view = 'Main'
+            create(action.item)
 
         when AppConstants.DELETE_MEAL
             destroy(action.item)

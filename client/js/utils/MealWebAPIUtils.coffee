@@ -18,7 +18,6 @@ module.exports =
                 actions.error(error)
 
     delete: (meal) ->
-        console.log meal
         $.ajax
             url: "#{url}/#{meal.id}"
             method: 'DELETE'
@@ -26,3 +25,7 @@ module.exports =
                 actions.deleteMeal(meal)
             error: (error) ->
                 actions.error(error)
+
+    create: (formData) ->
+        $.post url, formData, (data) ->
+            actions.createMeal(data)
