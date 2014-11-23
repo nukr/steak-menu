@@ -6,9 +6,7 @@ var build = './client/build';
 module.exports = {
     browserSync: {
         files: [ build + "/**" ],
-        server: {
-            baseDir: client
-        },
+        proxy: '0.0.0.0:3000',
         startPath: 'build/index.html'
     },
 };
